@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <div className='col-start-3 col-end-12 place-self-center flex flex-wrap justify-around gap-4 py-4 items-center rounded-2xl w-10/12 h-5/6 bg-white overflow-y-scroll overhflow-x-hidden'>
           {dummyData.map((game: Game, index: number) => {
             return (
-            <GameOverview game={game} key={index + 1}/>
+            <GameOverview game={game} key={index}/>
             )
           })}
         </div>
