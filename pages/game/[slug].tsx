@@ -12,12 +12,12 @@ const Game: NextPage = () => {
             <div className='col-start-1 col-end-13 row-start-1 row-end-12 md:col-start-2 md:col-end-13 flex flex-col justify-center overflow-hidden content-center h-full'>
                 <h1 className='text-white text-xl text-center pb-4'>Madden Stat Tracker</h1>
                 <div className='col-start-3 col-end-12 place-self-center flex flex-wrap justify-around gap-4 py-4 items-center rounded-2xl w-10/12 h-5/6 bg-white overflow-y-scroll overhflow-x-hidden'>
-                    <div className="bg-stone-300 shadow-lg shadow-stone-500 w-5/6 h-5/6 flex flex-col justify-around">
+                    <div className="bg-stone-300 shadow-lg shadow-stone-500 w-5/6 h-5/6 flex flex-col justify-around text-md sm:text-lg md:text-xl">
                         <div className="flex justify-around">
                             <div className={`w-16 h-16 rounded-full bg-white flex justify-center items-center ${dummyData[slug].win ? 'text-green-500' : 'text-red-500'}`}>
                                 {dummyData[slug].win ? 'Win' : 'Loss'}
                             </div>
-                            <div>
+                            <div className="pt-8 text-bold">
                                 Opponent: {dummyData[slug].opponent}
                             </div>
                         </div>
@@ -35,6 +35,54 @@ const Game: NextPage = () => {
                             </div>
                             <div>
                                 Score: {dummyData[slug].opponentScore}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Passing Yards: {dummyData[slug].passingYards}
+                            </div>
+                            <div>
+                                Passing Yards: {dummyData[slug].opponentPassingYards}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Rushing Yards: {dummyData[slug].rushingYards}
+                            </div>
+                            <div>
+                                Rushing Yards: {dummyData[slug].opponentRushingYards}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Passing TDs: {dummyData[slug].passingTds}
+                            </div>
+                            <div>
+                                Passing TDs: {dummyData[slug].opponentPassingTds}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Rushing TDs: {dummyData[slug].rushingTds}
+                            </div>
+                            <div>
+                                Rushing TDs: {dummyData[slug].opponentRushingTds}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Forced Fumbles: {dummyData[slug].forcedFumbles}
+                            </div>
+                            <div>
+                                Forced Fumbles: {dummyData[slug].opponentForcedFumbles}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Interceptions: {dummyData[slug].interceptions}
+                            </div>
+                            <div>
+                                Interceptions: {dummyData[slug].opponentInterceptions}
                             </div>
                         </div>
                     </div>

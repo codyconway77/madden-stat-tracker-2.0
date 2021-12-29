@@ -5,7 +5,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   }, 
   {
     id: 2,
@@ -14,7 +26,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 3,
@@ -23,7 +47,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 31,
     team: 'Chiefs',
-    opposingTeam: 'Colts' 
+    opposingTeam: 'Colts',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 4,
@@ -32,7 +68,19 @@ const dummyData = [{
     score: 55,
     opponentScore: 7,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 5,
@@ -41,7 +89,19 @@ const dummyData = [{
     score: 21,
     opponentScore: 3,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 6,
@@ -50,7 +110,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 24,
     team: 'Cowboys',
-    opposingTeam: 'Packers' 
+    opposingTeam: 'Packers',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 7,
@@ -59,7 +131,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 8,
@@ -68,7 +152,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 9,
@@ -77,7 +173,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
   {
     id: 10,
@@ -86,7 +194,19 @@ const dummyData = [{
     score: 17,
     opponentScore: 13,
     team: 'Raiders',
-    opposingTeam: 'Broncos' 
+    opposingTeam: 'Broncos',
+    passingYards: 200,
+    opponentPassingYards: 130,
+    rushingYards: 100,
+    opponentRushingYards: 40,
+    passingTds: 2,
+    opponentPassingTds: 1,
+    rushingTds: 1,
+    opponentRushingTds: 0,
+    forcedFumbles: 0,
+    opponentForcedFumbles: 1,
+    interceptions: 1,
+    opponentInterceptions: 2 
   },
 ]
 
@@ -97,7 +217,19 @@ export type Game = {
     score: Number,
     opponentScore: Number,
     team: String,
-    opposingTeam: String
+    opposingTeam: String,
+    passingYards: number,
+    opponentPassingYards: number,
+    rushingYards: number,
+    opponentRushingYards: number,
+    passingTds: number,
+    opponentPassingTds: number,
+    rushingTds: number,
+    opponentRushingTds: number,
+    forcedFumbles: number,
+    opponentForcedFumbles: number,
+    interceptions: number,
+    opponentInterceptions: number
 }
 
 export default dummyData
