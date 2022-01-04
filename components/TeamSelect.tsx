@@ -1,4 +1,6 @@
-function TeamSelect(props: { name: string }) {
+import { AppProps } from "next/app"
+
+const TeamSelect: React.FC<{ name: string }> = (props: { name: string }) => {
     return (
         <>
             <select required name={props.name} id={props.name} className='outline-1 outline rounded-md'>

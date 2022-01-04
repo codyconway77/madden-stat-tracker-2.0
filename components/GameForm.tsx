@@ -1,7 +1,7 @@
 import React, { FormEventHandler } from 'react'
 import TeamSelect from './TeamSelect'
 
-function GameForm() {
+const GameForm: React.FC = () => {
     const handleSubmit: FormEventHandler = async (event) => {
         event.preventDefault()
 
