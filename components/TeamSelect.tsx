@@ -1,9 +1,9 @@
 import { AppProps } from "next/app"
 
-const TeamSelect: React.FC<{ name: string }> = (props: { name: string }) => {
+const TeamSelect: React.FC<{ name: string, leftRight: string }> = (props: { name: string , leftRight: string }) => {
     return (
         <>
-            <select required name={props.name} id={props.name} className='outline-1 outline rounded-md'>
+            <select required name={props.name} id={props.name} className={`outline-1 outline rounded-md text-${props.leftRight}`}>
                 <option value="49ers">49ers</option>
                 <option value="Bears">Bears</option>
                 <option value="Bengals">Bengals</option>
