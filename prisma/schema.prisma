@@ -11,13 +11,15 @@ datasource db {
 }
 
 model Game {
-  id               Int    @id @default(autoincrement())
-  user             User   @relation(fields: [userId], references: [id])
+  id               Int     @id @default(autoincrement())
+  user             User    @relation(fields: [userId], references: [id])
   userId           Int
-  team             Team   @relation(fields: [teamId], references: [id])
+  team             Team    @relation(fields: [teamId], references: [id])
   teamId           Int
+  teamName         String
   opponent         String
   oppTeam          String
+  win              Boolean @default(false)
   score            Int
   oppScore         Int
   passingYards     Int

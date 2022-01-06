@@ -1,11 +1,17 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router"
 import Nav from "../../components/Nav";
+import { prisma } from '../../lib/prismaClient'
 import dummyData from "../../lib/dummyData";
+import { Game } from "@prisma/client";
 
-const Game: NextPage = () => {
-    const { query } = useRouter()
-    const slug = parseInt(query.slug as string) - 1
+interface IGameProps {
+    game: Game
+}
+
+const Game: NextPage<IGameProps> = ({ game }) => {
+    // const { query } = useRouter()
+    // const slug = parseInt(query.slug as string) - 1
     return (
         <div className='grid grid-rows-12 grid-cols-12 w-screen h-screen overflow-hidden bg-stone-800'>
             <Nav />
@@ -14,75 +20,75 @@ const Game: NextPage = () => {
                 <div className='col-start-3 col-end-12 place-self-center flex flex-wrap justify-around gap-4 py-4 items-center rounded-2xl w-10/12 h-5/6 bg-white overflow-y-scroll overhflow-x-hidden'>
                     <div className="bg-stone-300 shadow-lg shadow-stone-500 w-5/6 h-5/6 flex flex-col justify-around text-md sm:text-lg md:text-xl">
                         <div className="flex justify-around">
-                            <div className={`w-16 h-16 rounded-full bg-white flex justify-center items-center ${dummyData[slug].win ? 'text-green-500' : 'text-red-500'}`}>
-                                {dummyData[slug].win ? 'Win' : 'Loss'}
+                            <div className={`w-16 h-16 rounded-full bg-white flex justify-center items-center ${game.win ? 'text-green-500' : 'text-red-500'}`}>
+                                {game.win ? 'Win' : 'Loss'}
                             </div>
                             <div className="pt-8 text-bold">
-                                Opponent: {dummyData[slug].opponent}
+                                Opponent: {game.opponent}
                             </div>
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Team: {dummyData[slug].team}
+                                Team: {game.teamId}
                             </div>
                             <div>
-                                Team: {dummyData[slug].opposingTeam}
-                            </div>
-                        </div>
-                        <div className="flex justify-around">
-                            <div>
-                                Score: {dummyData[slug].score}
-                            </div>
-                            <div>
-                                Score: {dummyData[slug].opponentScore}
+                                Team: {game.oppTeam}
                             </div>
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Passing Yards: {dummyData[slug].passingYards}
+                                Score: {game.score}
                             </div>
                             <div>
-                                Passing Yards: {dummyData[slug].opponentPassingYards}
-                            </div>
-                        </div>
-                        <div className="flex justify-around">
-                            <div>
-                                Rushing Yards: {dummyData[slug].rushingYards}
-                            </div>
-                            <div>
-                                Rushing Yards: {dummyData[slug].opponentRushingYards}
+                                Score: {game.oppScore}
                             </div>
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Passing TDs: {dummyData[slug].passingTds}
+                                Passing Yards: {game.passingYards}
                             </div>
                             <div>
-                                Passing TDs: {dummyData[slug].opponentPassingTds}
-                            </div>
-                        </div>
-                        <div className="flex justify-around">
-                            <div>
-                                Rushing TDs: {dummyData[slug].rushingTds}
-                            </div>
-                            <div>
-                                Rushing TDs: {dummyData[slug].opponentRushingTds}
+                                Passing Yards: {game.oppPassingYards}
                             </div>
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Forced Fumbles: {dummyData[slug].forcedFumbles}
+                                Rushing Yards: {game.rushingYards}
                             </div>
                             <div>
-                                Forced Fumbles: {dummyData[slug].opponentForcedFumbles}
+                                Rushing Yards: {game.oppRushingYards}
                             </div>
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Interceptions: {dummyData[slug].interceptions}
+                                Passing TDs: {game.passingTds}
                             </div>
                             <div>
-                                Interceptions: {dummyData[slug].opponentInterceptions}
+                                Passing TDs: {game.oppPassingTds}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Rushing TDs: {game.rushingTds}
+                            </div>
+                            <div>
+                                Rushing TDs: {game.oppRushingTds}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Forced Fumbles: {game.forcedFumbles}
+                            </div>
+                            <div>
+                                Forced Fumbles: {game.oppForcedFumbles}
+                            </div>
+                        </div>
+                        <div className="flex justify-around">
+                            <div>
+                                Interceptions: {game.interceptions}
+                            </div>
+                            <div>
+                                Interceptions: {game.oppInterceptions}
                             </div>
                         </div>
                     </div>
@@ -90,6 +96,13 @@ const Game: NextPage = () => {
             </div>
         </div>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+    const game = await prisma.game.findUnique({
+        where: { id: parseInt(query.slug as string)}
+    })
+    return {props: { game }}
 }
 
 export default Game

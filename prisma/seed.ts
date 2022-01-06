@@ -8,6 +8,7 @@ async function main() {
       where: { userName: 'bob' },
       update: {},
       create: {
+        id: 1,
         userName: 'bob',
         hashedPassword: 'bob-3478-afeaerasdfewfa-ekjofpaore',
       },
@@ -17,6 +18,7 @@ async function main() {
         where: { id: 1 },
         update: {},
         create: {
+            id: 1,
             userId: 1
         }
     })
@@ -25,10 +27,13 @@ async function main() {
         where: { id: 1 },
         update: {},
         create: {
+            id: 1,
             userId: 1,
             teamId: 1,
+            teamName: 'Raiders',
             opponent: 'Bob',
             oppTeam: '49ers',
+            win: true,
             score: 27,
             oppScore: 3,
             passingYards: 268,

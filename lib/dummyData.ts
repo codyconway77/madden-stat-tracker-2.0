@@ -215,21 +215,21 @@ export type Game = {
     win: Boolean,
     opponent: String,
     score: Number,
-    opponentScore: Number,
+    oppScore: Number,
     team: String,
-    opposingTeam: String,
+    oppTeam: String,
     passingYards: number,
-    opponentPassingYards: number,
+    oppPassingYards: number,
     rushingYards: number,
-    opponentRushingYards: number,
+    oppRushingYards: number,
     passingTds: number,
-    opponentPassingTds: number,
+    oppPassingTds: number,
     rushingTds: number,
-    opponentRushingTds: number,
+    oppRushingTds: number,
     forcedFumbles: number,
-    opponentForcedFumbles: number,
+    oppForcedFumbles: number,
     interceptions: number,
-    opponentInterceptions: number
+    oppInterceptions: number
 }
 
 export default dummyData

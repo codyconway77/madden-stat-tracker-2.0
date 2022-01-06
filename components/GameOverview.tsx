@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { Game } from '../lib/dummyData'
+import { Game } from '@prisma/client'
 
 function GameOverview(props: {game: Game, key: number}) {
     return (
@@ -17,7 +17,7 @@ function GameOverview(props: {game: Game, key: number}) {
                         -   
                     </div>
                     <div className='text-xl'>
-                        {props.game.opponentScore}</div>
+                        {props.game.oppScore}</div>
                     </div>
             </div>
         </Link>
