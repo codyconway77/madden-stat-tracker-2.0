@@ -1,11 +1,38 @@
 import { withSessionSsr } from '../lib/withSession'
 import { NextPage } from 'next'
+import { FormEventHandler, useState } from 'react'
 
 const Login: NextPage<any> = ({ props }) => {
+    const [formData, setFormData] = useState({})
+    
+    const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+            setFormData({
+                ...formData,
+                [event.target.name]: event.target.value
+            })
+            console.log(formData)
+        }
+    
+    const handleSubmit: FormEventHandler = async (event) => {
+        event.preventDefault()
+        await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'applicatin/json'
+            },
+            body: JSON.stringify({
+                ...formData
+            })
+        })
+    }
     return (
-        <div className='grid grid-rows-12 grid-cols-12 w-screen h-screen overflow-hidden bg-stone-800'>
-            {props?.isLoggedIn ? props.isLoggedIn : "Not logged in"}
-        </div>
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username</label>
+            <input onChange={inputHandler} required name="username" id="username" type='text'></input>
+            <label htmlFor="password">Password</label>
+            <input onChange={inputHandler} required name="password" id="password" type='text'></input>
+            <button type="submit">Login</button>
+        </form>
     )
 } 
 

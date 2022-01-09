@@ -7,7 +7,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default withSessionRoute(loginRoute)
 
 async function loginRoute(req: any, res: NextApiResponse) {
-    const { username, password } = req.body
+    const body = JSON.parse(req.body)
+    const { username, password } = body
     try {
         const getUserHashedPassword: Omit<User, "createdAt" | "updatedAt" | "games" | "teams"> | null = await prisma.user.findFirst({
             where: {
@@ -27,7 +28,7 @@ async function loginRoute(req: any, res: NextApiResponse) {
                 userName: getUserHashedPassword.userName
             }
             await req.session.save()
-            res.json({message: "Login successful"})
+            await res.json({message: "Login successful"})
         } else res.json({ message: "Password does not match" })
     } catch(error) {
         console.log(error)
