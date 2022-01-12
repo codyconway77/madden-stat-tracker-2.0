@@ -1,7 +1,9 @@
-import React, { FormEvent, FormEventHandler, useState } from 'react'
+import React, { FormEvent, FormEventHandler, ReactPropTypes, useState } from 'react'
 import TeamSelect from './TeamSelect'
 
-const GameForm: React.FC = () => {
+type GameFormProps = { id: number}
+
+const GameForm: React.FC<GameFormProps> = ({ id }) => {
     const [formData, setFormData] = useState({})
 
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,13 +17,15 @@ const GameForm: React.FC = () => {
         event.preventDefault()
         const res = await fetch('/api/createGame', {
             body: JSON.stringify({
-                ...formData
+                ...formData,
+                userId: id
             }),
             headers: {
                 'content-type': 'application/json' 
             },
             method: 'POST'
         })
+        console.log( res.body )
 
         const result = await res.json()
         console.log(result)
@@ -29,6 +33,7 @@ const GameForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit} className='w-full mt-[-2] md:w-5/6 lg:w-4/6 grid grid-cols-2 p-2 md:p-4 gap-4 ring-2 ring-red-700'>
             <div className='col-start-1 col-end-3 flex flex-col'>
+                {id}
                 <label htmlFor='opponent' className='text-center'>Opponent</label>
                 <input onChange={inputHandler} id='opponent' name='opponent' type='text' required className='outline-1 outline rounded-md text-center'></input>
             </div>

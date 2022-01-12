@@ -29,7 +29,7 @@ const Game: NextPage<IGameProps> = ({ game }) => {
                         </div>
                         <div className="flex justify-around">
                             <div>
-                                Team: {game.teamId}
+                                Team: {game.teamName}
                             </div>
                             <div>
                                 Team: {game.oppTeam}

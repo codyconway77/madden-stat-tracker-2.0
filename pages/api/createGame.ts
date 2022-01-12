@@ -4,11 +4,12 @@ import { prisma } from "../../lib/prismaClient"
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const body = req.body
     console.log(body)
+    console.log(body.userId)
     const winOrLoss = (parseInt(body.score) > parseInt(body.oppScore)) ? true : false
     try {
         const newGame = await prisma.game.create({
             data: {
-                userId: 1,
+                userId: body.userId,
                 teamId: 1,
                 opponent: body.opponent,
                 win: winOrLoss,

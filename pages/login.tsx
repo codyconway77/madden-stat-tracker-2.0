@@ -1,9 +1,12 @@
 import { withSessionSsr } from '../lib/withSession'
 import { NextPage } from 'next'
 import { FormEventHandler, useState } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const Login: NextPage<any> = ({ props }) => {
     const [formData, setFormData] = useState({})
+    const router = useRouter()
     
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
             setFormData({
@@ -15,7 +18,7 @@ const Login: NextPage<any> = ({ props }) => {
     
     const handleSubmit: FormEventHandler = async (event) => {
         event.preventDefault()
-        await fetch('/api/login', {
+        const user = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'content-type': 'applicatin/json'
@@ -24,30 +27,37 @@ const Login: NextPage<any> = ({ props }) => {
                 ...formData
             })
         })
+        if (user.ok) {
+            router.replace('/')
+        }
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input onChange={inputHandler} required name="username" id="username" type='text'></input>
-            <label htmlFor="password">Password</label>
-            <input onChange={inputHandler} required name="password" id="password" type='text'></input>
-            <button type="submit">Login</button>
-        </form>
+        <div className='flex w-full h-screen justify-center items-center flex-col'>
+            <form onSubmit={handleSubmit} className='flex flex-col mb-4'>
+                <label htmlFor="username" className='p-1'>Username</label>
+                <input onChange={inputHandler} autoComplete='off' required minLength={3} name="username" id="username" type='text' className='p-1 outline rounded-md outline-stone-600'></input>
+                <label htmlFor="password" className='p-1'>Password</label>
+                <input onChange={inputHandler} autoComplete='off' required minLength={6} name="password" id="password" type='text' className='p-1 outline rounded-md outline-stone-600'></input>
+                <button type="submit" className="outline mt-4 p-1 outline-stone-700 rounded-md hover:bg-stone-500 focus:bg-stone-500 focus:text-white shadow-md shadow-stone-700 hover:shadow-inner hover:shadow-stone-700 hover:font-semibold  hover:text-white">Login</button>
+            </form>
+            <p>Don&apos;t have an account? Create one <Link href='/signup'><a className='text-blue-400 focus:text-blue-600 hover:text-blue-600'>Here!</a></Link></p>
+        </div>
     )
 } 
 
 export const getServerSideProps = withSessionSsr(
-    async function getServerSideProps({ req }) {
+    async function getServerSideProps({ req }): Promise<any> {
         const user = req.session.user
         if (user) {
-            redirect: {
-                location: '/'
+            return {
+                redirect: {
+                    destination: '/'
+                },
+                props: {}
             }
         }
         return {
-            props: {
-                isLoggedIn: false
-            }
+            props: { }
         }
     }
 )

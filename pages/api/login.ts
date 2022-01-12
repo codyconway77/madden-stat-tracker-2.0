@@ -31,6 +31,7 @@ async function loginRoute(req: any, res: NextApiResponse) {
             await res.json({message: "Login successful"})
         } else res.json({ message: "Password does not match" })
     } catch(error) {
-        console.log(error)
+        throw console.error(error);
+        
     }
 }
