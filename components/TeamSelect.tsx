@@ -4,6 +4,7 @@ const TeamSelect: React.FC<{ onChange: any, name: string, leftRight: string }> =
     return (
         <>
             <select onChange={props.onChange} required name={props.name} id={props.name} className={`outline-1 outline rounded-md text-${props.leftRight}`}>
+                <option disabled hidden selected>--Select A Team--</option>
                 <option value="49ers">49ers</option>
                 <option value="Bears">Bears</option>
                 <option value="Bengals">Bengals</option>
