@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client"
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { FormEventHandler, useState } from "react"
@@ -36,10 +37,10 @@ const Signup: NextPage<any> = ({ props }) => {
         } catch(error) {
             if (error instanceof Prisma.PrismaClientKnownRequestError) {
                 if (error.code === 'P2002') {
-                    setErrors([...errors, { error: "Oops, that username appears to be taken."}])
+                    setErrors([...errors, { error: error.message }])
                 }
             } else {
-                setErrors([...errors, { error: "Unknown error"}])
+                setErrors([...errors, { error: "unknown error" }])
             }
         }
         console.log(errors)

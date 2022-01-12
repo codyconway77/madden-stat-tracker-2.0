@@ -1,11 +1,12 @@
-import React, { FormEvent, FormEventHandler, ReactPropTypes, useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { FormEventHandler, useState } from 'react'
 import TeamSelect from './TeamSelect'
 
 type GameFormProps = { id: number}
 
 const GameForm: React.FC<GameFormProps> = ({ id }) => {
     const [formData, setFormData] = useState({})
-
+    const router = useRouter()
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
@@ -25,15 +26,13 @@ const GameForm: React.FC<GameFormProps> = ({ id }) => {
             },
             method: 'POST'
         })
-        console.log( res.body )
-
-        const result = await res.json()
-        console.log(result)
+        if (res.ok) {
+            router.push('/')
+        }
     } 
     return (
         <form onSubmit={handleSubmit} className='w-full mt-[-2] md:w-5/6 lg:w-4/6 grid grid-cols-2 p-2 md:p-4 gap-4 ring-2 ring-red-700'>
             <div className='col-start-1 col-end-3 flex flex-col'>
-                {id}
                 <label htmlFor='opponent' className='text-center'>Opponent</label>
                 <input onChange={inputHandler} id='opponent' name='opponent' type='text' required className='outline-1 outline rounded-md text-center'></input>
             </div>
