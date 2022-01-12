@@ -3,7 +3,7 @@ import React from 'react'
 
 function Nav() {
     return (
-        <div className='col-start-1 col-end-13 row-start-12 row-end-13 md:col-start-1 md:col-end-2 flex md:flex-col justify-around items-center bg-stone-700 md:h-full'>
+        <div className='h-min self-end col-start-1 col-end-13 row-start-12 row-end-13 md:col-start-1 md:col-end-2 flex md:flex-col justify-around items-center bg-stone-700 md:h-full'>
             <Link href='/' passHref>
                 <div className='text-center text-white text-xl lg:text-2xl cursor-pointer hover:text-stone-300'>Games</div> 
             </Link>

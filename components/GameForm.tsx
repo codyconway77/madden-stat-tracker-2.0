@@ -31,7 +31,7 @@ const GameForm: React.FC<GameFormProps> = ({ id }) => {
         }
     } 
     return (
-        <form onSubmit={handleSubmit} className='w-full mt-[-2] md:w-5/6 lg:w-4/6 grid grid-cols-2 p-2 md:p-4 gap-4 ring-2 ring-red-700'>
+        <form onSubmit={handleSubmit} className='w-full mt-[-2] md:w-5/6 lg:w-4/6 grid grid-cols-2 p-2 md:p-4 gap-4'>
             <div className='col-start-1 col-end-3 flex flex-col'>
                 <label htmlFor='opponent' className='text-center'>Opponent</label>
                 <input onChange={inputHandler} id='opponent' name='opponent' type='text' required className='outline-1 outline rounded-md text-center'></input>
