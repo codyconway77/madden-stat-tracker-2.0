@@ -1,14 +1,11 @@
-import { Prisma } from "@prisma/client"
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { FormEventHandler, useState } from "react"
 import { withSessionSsr } from "../lib/withSession"
 
-
 const Signup: NextPage<any> = ({ props }) => {
     const [formData, setFormData] = useState({})
-    const [errors, setErrors] = useState<Array<{ error: string }>>([])
+    const [errors, setErrors] = useState<any>({})
     const router = useRouter()
     
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,12 +13,11 @@ const Signup: NextPage<any> = ({ props }) => {
                 ...formData,
                 [event.target.name]: event.target.value
             })
-            console.log(formData)
         }
     
     const handleSubmit: FormEventHandler = async (event) => {
         event.preventDefault()
-        try {
+        
             const newUser = await fetch('/api/signup', {
                 method: 'POST',
                 headers: {
@@ -31,27 +27,17 @@ const Signup: NextPage<any> = ({ props }) => {
                     ...formData
                 })
             })
+            if (newUser.status === 400) {
+                setErrors({ error: "Username already exists"})
+            }
             if (newUser.ok) {
                 router.push('/')
             }
-        } catch(error) {
-            if (error instanceof Prisma.PrismaClientKnownRequestError) {
-                if (error.code === 'P2002') {
-                    setErrors([...errors, { error: error.message }])
-                }
-            } else {
-                setErrors([...errors, { error: "unknown error" }])
-            }
-        }
-        console.log(errors)
+        
     }
     return (
-        <div className='flex w-full h-screen justify-center items-center'>
-            {errors.map((error, index) => {
-                return(
-                <p key={index}>{error.error.toString()}</p>
-                )
-            })}
+        <div className='flex flex-col w-full h-screen justify-center items-center'>
+            <p className="text-red-600">{errors?.error}</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <label htmlFor="username" className="p-1">Username</label>
                 <input onChange={inputHandler} autoComplete='off' required minLength={3} name="username" id="username" type='text' className='p-1 outline rounded-md outline-stone-600'></input>

@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 const Login: NextPage<any> = ({ props }) => {
     const [formData, setFormData] = useState({})
+    const [errors, setErrors] = useState<any>({})
     const router = useRouter()
     
     const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +14,6 @@ const Login: NextPage<any> = ({ props }) => {
                 ...formData,
                 [event.target.name]: event.target.value
             })
-            console.log(formData)
         }
     
     const handleSubmit: FormEventHandler = async (event) => {
@@ -27,12 +27,14 @@ const Login: NextPage<any> = ({ props }) => {
                 ...formData
             })
         })
+        if (user.status === 409 || 401) setErrors({ error: "Either username or password is incorrect!"})
         if (user.ok) {
             router.replace('/')
         }
     }
     return (
-        <div className='flex w-full h-screen justify-center items-center flex-col'>
+        <div className='flex flex-col w-full h-screen justify-center items-center'>
+            <p className="text-red-600">{errors?.error}</p>
             <form onSubmit={handleSubmit} className='flex flex-col mb-4'>
                 <label htmlFor="username" className='p-1'>Username</label>
                 <input onChange={inputHandler} autoComplete='off' required minLength={3} name="username" id="username" type='text' className='p-1 outline rounded-md outline-stone-600'></input>

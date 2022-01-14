@@ -20,7 +20,10 @@ async function loginRoute(req: any, res: NextApiResponse) {
                 hashedPassword: true
             }
         })
-        if (getUserHashedPassword === null) throw console.error('No user with that username exists');
+        if (!getUserHashedPassword) {
+            res.status(409).json({error: "Username does not exist!"})
+            throw console.error('Eh wrong!')
+        }
         const passwordMatch = await bcrypt.compare(password, getUserHashedPassword.hashedPassword)
         if (passwordMatch) {
             req.session.user = {
@@ -29,9 +32,8 @@ async function loginRoute(req: any, res: NextApiResponse) {
             }
             await req.session.save()
             await res.json({message: "Login successful"})
-        } else res.json({ message: "Password does not match" })
+        } else res.status(401).json({ message: "Password does not match" })
     } catch(error) {
         throw console.error(error);
-        
     }
 }

@@ -26,14 +26,11 @@ async function signupRoute(req: NextApiRequest, res: NextApiResponse) {
                 hashedPassword: hashed
             },
         })
-        if (!findUser) {
-            res.json({ message: "An error occured with creating the user"})
-        }
-        res.json({ message: "User successfully created!" })
+        res.status(201).json({ message: "User successfully created!" })
     } catch(error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
             if (error.code === 'P2002') {
-                console.log(error.message)
+                res.status(400).json(error.message)
             }
         }
     }
