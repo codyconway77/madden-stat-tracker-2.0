@@ -14,12 +14,12 @@ async function main() {
       },
     })
 
-    const raiders = await prisma.team.upsert({
-        where: { id: 1 },
+    const team = await prisma.team.upsert({
+        where: { name: "49ers" },
         update: {},
         create: {
-            id: 1,
-            userId: 1
+            userId: 1,
+            name: "49ers"
         }
     })
 
@@ -29,7 +29,6 @@ async function main() {
         create: {
             id: 1,
             userId: 1,
-            teamId: 1,
             teamName: 'Raiders',
             opponent: 'Bob',
             oppTeam: '49ers',
@@ -51,7 +50,7 @@ async function main() {
         },
     })
     
-    console.log({ bob, raiders, game1 })
+    console.log({ bob, team, game1 })
     }
     
     main()

@@ -6,11 +6,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(body)
     console.log(body.userId)
     const winOrLoss = (parseInt(body.score) > parseInt(body.oppScore)) ? true : false
+    const addToTeam = await prisma.team.upsert({
+        where: {
+            teamId: {
+                userId: body.userId,
+                name:body.teamName
+            }
+        },
+        update: {
+            
+        },
+        create: {
+            userId: body.userId,
+            name: body.teamName
+        }
+    })
+    console.log(addToTeam)
     try {
         const newGame = await prisma.game.create({
             data: {
                 userId: body.userId,
-                teamId: 1,
                 opponent: body.opponent,
                 win: winOrLoss,
                 teamName: body.teamName,
