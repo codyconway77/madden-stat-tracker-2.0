@@ -27,10 +27,10 @@ const Login: NextPage<any> = ({ props }) => {
                 ...formData
             })
         })
-        if (user.status === 409 || 401) setErrors({ error: "Either username or password is incorrect!"})
         if (user.ok) {
             router.replace('/')
         }
+        if (user.status === 409 || 401) setErrors({ error: "Either username or password is incorrect!"})
     }
     return (
         <div className='flex flex-col w-full h-screen justify-center items-center'>
